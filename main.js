@@ -1,3 +1,4 @@
+
 let APP_ID = "7fc45f8934f04d7e84403830d72f319d"
 
 let token = null;
@@ -29,8 +30,8 @@ const servers = {
 
 let constraints = {
     video:{
-        width:{min:640, ideal:640, max:640},
-        height:{min:480, ideal:480, max:480},
+        width:{min:640, ideal:1920, max:1920},
+        height:{min:480, ideal:1080, max:1080},
     },
     audio:true
 }
