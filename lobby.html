@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lobby</title>
+    <title>P2PChat - Lobby</title>
     <link rel="stylesheet" href="lobby.css">
 </head>
 <body>
     
     <main id="lobby-container">
-        <div id="form-container">
-            <div id="form__container__header">
-                <p>👋 Create OR Join a Room</p>
+        <div id="form-card">
+            <div id="form-card-header">
+                <p>🚀 Join or Create a Room</p>
             </div>
 
-            <div id="form__content__wrapper">
-                <form id="join-form">
-                    <input type="text" name="invite_link" required/>
-                    <input type="submit" value="Join Room" />
-                </form>
-            </div>
+            <form id="join-form">
+                <label for="invite_link">Enter Room Name</label>
+                <input type="text" id="invite_link" name="invite_link" placeholder="e.g., developers-hangout" required/>
+                <button type="submit" class="btn">Join Room</button>
+            </form>
         </div>
     </main>
-</body>
 
 <script>
-    let form = document.getElementById('join-form')
+    const joinForm = document.getElementById('join-form');
 
-    form.addEventListener('submit', (e)=>{
-        e.preventDefault()
-        let inviteCode = e.target.invite_link.value
-        window.location = `index.html?room=${inviteCode}` 
-    })
+    joinForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Generate a unique room name if the user leaves it blank, otherwise use their input
+        const inviteCode = e.target.invite_link.value.trim() || `room-${Math.floor(Math.random() * 10000)}`;
+        window.location.href = `index.html?room=${encodeURIComponent(inviteCode)}`; 
+    });
 </script>
 
+</body>
 </html>

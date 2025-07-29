@@ -1,76 +1,152 @@
-*{
+:root {
+    --primary-color: #8a2be2;
+    --primary-translucent: rgba(138, 43, 226, 0.9);
+    --danger-color: #e53e3e;
+    --danger-translucent: rgba(229, 62, 62, 0.9);
+    --dark-grey: #1c1c1e;
+    --control-bg: #2c2c2e;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    --transition-speed: 0.3s;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-#videos{
-    display: grid;
-    grid-template-columns: 1fr;
+
+body {
+    background-color: var(--dark-grey);
+    font-family: sans-serif;
+}
+
+#room-container {
+    position: relative;
     height: 100vh;
+    width: 100vw;
     overflow: hidden;
 }
 
-.video-player{
-    background-color: black;
-    width: 100%;
+#video-streams {
+    display: flex;
+    flex-wrap: wrap;
     height: 100%;
-    object-fit: cover;
+    width: 100%;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+    transition: all var(--transition-speed) ease;
 }
 
+.video-player {
+    background-color: #2c2c2e;
+    border: 2px solid var(--control-bg);
+    border-radius: 12px;
+    object-fit: cover;
+    transition: all var(--transition-speed) ease;
+    box-shadow: var(--shadow);
+}
+
+/* Default state: one user, full screen */
+#user-1 {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
 #user-2 {
     display: none;
 }
 
-.smallFrame{
-    position: fixed;
+/* State when another user joins */
+#video-streams.two-users #user-1 {
+    position: absolute;
+    width: 250px;
+    height: 150px;
     top: 20px;
-    left: 20px;
-    height: 170px;
-    width: 300px;
-    border-radius: 5px;
-    border: 2px solid #b366f9;
-    -webkit-box-shawdow: 3px 3px 15px -1px rgb(0,0,0,0.77);
-    box-shadow : 3px 3px 15px -1px rgb(0,0,0,0.77);
-    z-index: 999;
+    right: 20px;
+    z-index: 10;
+    border: 2px solid var(--primary-color);
+}
+#video-streams.two-users #user-2 {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
-#controls {
+
+#controls-wrapper {
     position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 1em;
-}
-
-
-.control-container {
-    background-color: rgb(179, 102, 249,0.9);
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 20px;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    z-index: 100;
+}
+
+.control-container {
+    display: flex;
+    gap: 1em;
+    background-color: rgba(44, 44, 46, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 12px 24px;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+}
+
+.control-btn {
+    background-color: var(--primary-translucent);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
     cursor: pointer;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
-.control-container img {
-    height: 30px;
-    width: 30px;
+.control-btn:hover {
+    transform: scale(1.1);
 }
 
-#leave-btn{
-    background-color: rgb(255, 80, 80, 1);
+.control-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: #fff;
 }
 
-@media screen and (max-width:600px) {
-    .smallFrame{
-        height: 80px;
-        width: 120px;
+.control-btn.active {
+    background-color: var(--primary-translucent);
+}
+
+.control-btn.inactive {
+    background-color: var(--danger-translucent);
+}
+
+.control-btn.leave {
+    background-color: var(--danger-color);
+}
+.control-btn.leave:hover {
+     background-color: #c53030;
+}
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    #video-streams.two-users #user-1 {
+        width: 150px;
+        height: 90px;
     }
 
-    .control-container img{
-        height: 20px;
-        width: 20px;
+    .control-btn {
+        width: 45px;
+        height: 45px;
+    }
+    .control-btn svg {
+        width: 24px;
+        height: 24px;
     }
 }
