@@ -2,9 +2,7 @@
 
 P2PChat is a peer-to-peer video chat application that allows users to create or join rooms for real-time video communication using WebRTC.
 
-## Preview
-![P2PChat Screenshot](preview.png)  
-*(Replace with your screenshot or demo link)*
+
 
 ## Features
 - **Create or Join Rooms:** Start a new room or join using an invite link.
