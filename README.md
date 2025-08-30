@@ -1,51 +1,32 @@
+# P2PChat
 
-P2PChat
-P2PChat is a peer-to-peer video chat application that allows users to create or join rooms for video communication.
+P2PChat is a peer-to-peer video chat application that allows users to create or join rooms for real-time video communication using WebRTC.
 
-Preview
-Features
-Create or Join Rooms: Users can create a new room or join an existing one using an invite link.
+## Preview
+![P2PChat Screenshot](preview.png)  
+*(Replace with your screenshot or demo link)*
 
-Video Chat: The application supports peer-to-peer video chat between two users.
+## Features
+- **Create or Join Rooms:** Start a new room or join using an invite link.
+- **Peer-to-Peer Video Chat:** Direct browser-to-browser video communication.
+- **Media Controls:** Toggle your camera and microphone on/off.
+- **Leave Room:** Exit the room and return to the lobby.
 
-Controls: Users have controls to toggle their camera and microphone on or off.
+## How it Works
+The app uses **WebRTC** for peer-to-peer media transfer, with **Agora RTM** providing signaling.
 
-Leave Room: Users can leave the chat room and return to the lobby.
+1. **Lobby:** User creates or joins a room.  
+2. **Signaling via Agora RTM:** Exchange of offers/answers and ICE candidates.  
+3. **WebRTC Connection:** Direct peer-to-peer channel is established.  
+4. **Media Streams:** Audio/video streams are exchanged between peers.  
+5. **Leaving Room:** User exits, and the peer is notified.
 
-How it Works
-The application uses WebRTC for peer-to-peer communication, facilitated by Agora's RTM (Real-Time Messaging) SDK for signaling.
+## Technologies Used
+- **HTML, CSS, JavaScript**
+- **Agora RTM SDK** (signaling)
+- **WebRTC** (video/audio streaming)
 
-Lobby: Users start in the lobby where they can create a room or join one using an invite code.
-
-Joining a Room: When a user joins a room, they are assigned a unique user ID and a connection is established to the Agora RTM channel.
-
-Signaling: When a new user joins, an "offer" is created and sent to the other user in the channel via Agora RTM. The receiving user creates an "answer" and sends it back. This exchange of session descriptions (offer/answer) is necessary to establish the WebRTC connection.
-
-ICE Candidates: During the connection process, ICE (Interactive Connectivity Establishment) candidates are exchanged between the peers to find the best path for communication.
-
-Peer-to-Peer Connection: Once the offer/answer exchange is complete and ICE candidates have been successfully exchanged, a direct peer-to-peer connection is established between the users' browsers.
-
-Media Streams: The local user's video and audio stream is sent to the remote user, and vice versa.
-
-Leaving the Channel: When a user leaves the channel, the other user is notified and the video of the user who left is hidden.
-
-Technologies Used
-HTML: The structure of the web pages.
-
-CSS: Styling of the application.
-
-JavaScript: The core logic of the application.
-
-Agora RTM SDK: Used for real-time messaging and signaling to establish the WebRTC connection.
-
-WebRTC: Enables peer-to-peer video and audio communication directly between browsers.
-
-How to Run the Application
-Clone the repository:
-
-git clone https://github.com/ratnesh433/p2pchat.git
-Open lobby.html in your browser.
-
-Create a room: Enter a room name and click "Join Room".
-
-Share the invite link: Share the generated URL with another user to have them join the room.
+## How to Run the Application
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ratnesh433/p2pchat.git
